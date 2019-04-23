@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <list>
 #include <vector>
 
 using namespace std;
@@ -51,18 +53,54 @@ void exercise_9_11(void) {
     return;
 }
 
-vector<int> vec1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+namespace e_9_14 {
+    char word1[] = "hello";
+    char word2[] = "world";
+    list<char *> lst = { word1, word2 };
+    vector<string> vec = { "hello world", "i am the king of the world!" };
 
-int e1 = 1, e2 = 99;
-vector<const int *> vec2 = { &e1, &e2 };
+    void exercise_9_14(list<char *> &lst, vector<string> &vec) {
+        vec.assign(lst.begin(), lst.end());
+    }
+}
 
 int main(void) {
-    cout << "hello world" << endl;
+    int nu;
 
-    exercise_9_11();
+    if (!(cin >> nu)) {
+        cerr << "input error!" << endl;
+        return -1;
+    }
 
-    vector<const int *>::iterator it = vec2.begin();
-    *it = &e2;
+    switch (nu) {
+    case 14:
+        using namespace e_9_14;
+
+        cout << "exercise 9.14" << endl;
+
+        for (int i = 0; i < 2; i++) {
+            if (i == 0) {
+                cout << "before:" << endl;
+            } else {
+                cout << "after:" << endl;
+            }
+            cout << "lst:" << endl;
+            for (auto pChar : lst) {
+                cout << "    " << pChar << endl;
+            }
+            cout << "vec:" << endl;
+            for (auto str : vec) {
+                cout << "    " << str << endl;
+            }
+            if (i == 0) {
+                exercise_9_14(lst, vec);
+            }
+        }
+
+        break;
+    default:
+        cout << "no such number..." << endl;
+    }
 
     return 0;
 }
