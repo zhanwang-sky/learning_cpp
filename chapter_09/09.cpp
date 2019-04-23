@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
-#include <list>
 #include <vector>
+#include <deque>
+#include <list>
 
 using namespace std;
 
@@ -54,14 +55,56 @@ void exercise_9_11(void) {
 }
 
 namespace e_9_14 {
-    char word1[] = "hello";
-    char word2[] = "world";
-    list<char *> lst = { word1, word2 };
-    vector<string> vec = { "hello world", "i am the king of the world!" };
+char word1[] = "hello";
+char word2[] = "world";
+list<char *> lst = { word1, word2 };
+vector<string> vec = { "hello world", "i am the king of the world!" };
 
-    void exercise_9_14(list<char *> &lst, vector<string> &vec) {
-        vec.assign(lst.begin(), lst.end());
+void exercise_9_14(list<char *> &lst, vector<string> &vec) {
+    vec.assign(lst.begin(), lst.end());
+}
+}
+
+namespace e_9_18 {
+deque<string> c;
+
+void exercise_9_18(size_t count) {
+    string tmp_str;
+
+    for (size_t i = 0; i < count; i++) {
+        cin >> tmp_str;
+        c.push_back(tmp_str);
     }
+
+    cout << "Your inputs:" << endl;
+    for (auto it = c.begin(); it != c.end(); ++it) {
+        cout << *it << endl;
+    }
+
+    return;
+}
+}
+
+namespace e_9_20 {
+list<int> lst = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+deque<int> dq1, dq2;
+vector<deque<int>> vec = { dq1, dq2 };
+
+void exercise_9_20(void) {
+    for (auto it = lst.begin(); it != lst.end(); ++it) {
+        vec[*it % 2].push_back(*it);
+    }
+
+    for (size_t i = 0; i < 2; i++) {
+        cout << "content of dq" << i + 1 << ":" << endl;
+        for (auto element : vec[i]) {
+            cout << element << " ";
+        }
+        cout << endl;
+    }
+
+    return;
+}
 }
 
 int main(void) {
@@ -97,6 +140,20 @@ int main(void) {
             }
         }
 
+        break;
+    case 18:
+        using namespace e_9_18;
+
+        size_t count;
+
+        cout << "count: ";
+        cin >> count;
+        exercise_9_18(count);
+
+        break;
+    case 20:
+        using namespace e_9_20;
+        exercise_9_20();
         break;
     default:
         cout << "no such number..." << endl;
