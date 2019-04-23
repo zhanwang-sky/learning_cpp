@@ -1,3 +1,0 @@
-09.cpp: In function ‘int main()’:
-09.cpp:39:32: error: passing ‘const const_iterator {aka const __gnu_cxx::__normal_iterator<const int*, std::vector<int> >}’ as ‘this’ argument of ‘__gnu_cxx::__normal_iterator<_Iterator, _Container>& __gnu_cxx::__normal_iterator<_Iterator, _Container>::operator++() [with _Iterator = const int*; _Container = std::vector<int>; __gnu_cxx::__normal_iterator<_Iterator, _Container> = __gnu_cxx::__normal_iterator<const int*, std::vector<int> >]’ discards qualifiers [-fpermissive]
-09.cpp:40:15: error: assignment of read-only location ‘it.__gnu_cxx::__normal_iterator<_Iterator, _Container>::operator*<const int*, std::vector<int> >()’
