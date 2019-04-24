@@ -7,6 +7,9 @@
 
 using namespace std;
 
+namespace e_9_4 {
+vector<int> iv = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
 bool exercise_9_4(vector<int>::const_iterator it_begin,
         const vector<int>::const_iterator it_end, int pattern) {
     // could not perform ++it_end
@@ -19,6 +22,10 @@ bool exercise_9_4(vector<int>::const_iterator it_begin,
 
     return false;
 }
+}
+
+namespace e_9_5 {
+vector<int> iv = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 vector<int>::iterator exercise_9_5(vector<int>::iterator it_begin,
         const vector<int>::const_iterator it_end, int pattern) {
@@ -31,17 +38,19 @@ vector<int>::iterator exercise_9_5(vector<int>::iterator it_begin,
 
     return it_begin;
 }
+}
+
+namespace e_9_11 {
+vector<int> vec0;
+vector<int> vec1(10, 1);
+vector<int> vec2(vec1);
+vector<int> vec3 = vec1;
+vector<int> vec4 = { 1, 2, 3, 4, 5, 6, 7, 8 };
+auto it = vec4.begin();
+vector<int> vec5(it, it + 5);
+vector<vector<int>> vecs = { vec0, vec1, vec2, vec3, vec4, vec5 };
 
 void exercise_9_11(void) {
-    vector<int> vec0;
-    vector<int> vec1(10, 1);
-    vector<int> vec2(vec1);
-    vector<int> vec3 = vec1;
-    vector<int> vec4 = { 1, 2, 3, 4, 5, 6, 7, 8 };
-    auto it = vec4.begin();
-    vector<int> vec5(it, it + 5);
-    vector<vector<int>> vecs = { vec0, vec1, vec2, vec3, vec4, vec5 };
-
     cout << "========================================" << endl
         << "content of vectors:" << endl;
     for (auto v : vecs) {
@@ -53,6 +62,7 @@ void exercise_9_11(void) {
     cout << endl;
 
     return;
+}
 }
 
 namespace e_9_14 {
@@ -213,6 +223,38 @@ int main(void) {
     }
 
     switch (nu) {
+    case 4:
+        do {
+            int pattern;
+
+            cout << "input an integer: ";
+            cin >> pattern;
+            if (e_9_4::exercise_9_4(e_9_4::iv.begin(), e_9_4::iv.end(), pattern)) {
+                cout << "found" << endl;
+            } else {
+                cout << "not found" << endl;
+            }
+        } while (0);
+
+        break;
+    case 5:
+        do {
+            int pattern;
+
+            cout << "input an integer: ";
+            cin >> pattern;
+            auto it_ret = e_9_5::exercise_9_5(e_9_5::iv.begin(), e_9_5::iv.end(), pattern);
+            if (it_ret != e_9_5::iv.end()) {
+                cout << "found, element is " << *it_ret << endl;
+            } else {
+                cout << "not found" << endl;
+            }
+        } while (0);
+
+        break;
+    case 11:
+        e_9_11::exercise_9_11();
+        break;
     case 14:
         using namespace e_9_14;
 
