@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <stdexcept>
 
 using namespace std;
 
@@ -70,17 +71,23 @@ multimap<string, set<string>> book_store = {
     }
 };
 
-void exercise_11_31(void) {
-    string str_auth, str_book;
-
-    for (auto it_auth = book_store.begin();
-            it_auth != book_store.end();
+void print_content(multimap<string, set<string>> &mm) {
+    for (auto it_auth = mm.begin();
+            it_auth != mm.end();
             ++it_auth) {
         cout << it_auth->first << endl;
         for (const auto &book : it_auth->second) {
             cout << "    " << book << endl;
         }
     }
+
+    return;
+}
+
+void exercise_11_31(void) {
+    string str_auth, str_book;
+
+    print_content(book_store);
 
     cout << "which item do you want to remove?" << endl;
     // TODO: ugly, is there any method can exhaust all chars remained in istream?
@@ -90,9 +97,20 @@ void exercise_11_31(void) {
     cout << "book: ";
     getline(cin, str_book);
 
-    cout << "confirm the item which you want to delete:" << endl;
-    cout << "author: " << str_auth << endl;
-    cout << "book: " << str_book << endl;
+    try {
+        auto it_auth = book_store.find(str_auth);
+        if (it_auth == book_store.end())
+            throw runtime_error("author not found");
+        auto it_book = it_auth->second.find(str_book);
+        if (it_book == it_auth->second.end())
+            throw runtime_error("book not found");
+        it_auth->second.erase(it_book);
+        cout << "item has been removed successfully" << endl;
+    } catch (runtime_error err) {
+        cout << err.what() << endl;
+    }
+
+    print_content(book_store);
 
     return;
 }
