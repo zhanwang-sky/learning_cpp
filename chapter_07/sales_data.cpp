@@ -3,11 +3,6 @@
 
 std::string Sales_data::_version = "1.0";
 
-Sales_data::Sales_data(std::istream &is) {
-    read(is, *this);
-    return;
-}
-
 // declear as a member function, because we need it to return *this
 Sales_data& Sales_data::combine(const Sales_data &rhs) {
     _units_sold += rhs._units_sold;

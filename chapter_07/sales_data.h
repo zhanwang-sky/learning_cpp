@@ -6,7 +6,7 @@ public:
     Sales_data(const std::string &s, unsigned n, double p):
         _bookNo(s), _units_sold(n), _revenue(n * p) {}
     Sales_data(const std::string &s): _bookNo(s) {}
-    Sales_data(std::istream&);
+    Sales_data(std::istream &is): Sales_data() { read(is, *this); }
     std::string isbn() const { return _bookNo; }
     Sales_data &combine(const Sales_data&);
     static std::string version() { return _version; }
