@@ -14,5 +14,23 @@ int main(void) {
     b2.push_back("!!!");
     cout << b1.size() << endl;
 
+    b1.at(2) = "wonderful";
+
+    for (decltype(b2)::size_type i = 0; i < b2.size(); i++) {
+        cout << b2.at(i) << " ";
+    }
+    cout << endl;
+
+    StrBlobPtr pb1 = b1.begin();
+    for (int i = 0; i < 3; i++) {
+        cout << pb1.deref() << " ";
+        pb1.incr();
+    }
+    cout << endl;
+
+    const StrBlob b3 = b1;
+    b3.pop_back();
+    cout << b3.size() << endl;
+
     return 0;
 }
