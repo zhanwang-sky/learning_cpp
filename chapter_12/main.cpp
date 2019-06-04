@@ -5,6 +5,21 @@ using namespace std;
 
 StrBlob b1 = { "hello", "world" };
 
+void echo_str(size_t n) {
+    string str;
+    allocator<string> a;
+    auto const p = a.allocate(n);
+    auto q = p;
+    while (cin >> str && q != p + n)
+        a.construct(q++, str);
+    for (q = p; q != p + n; q++) {
+        cout << *q << " ";
+        a.destroy(q);
+    }
+    cout << endl;
+    a.deallocate(p, n);
+}
+
 int main(void) {
     StrBlob b2;
 
@@ -31,6 +46,8 @@ int main(void) {
     const StrBlob b3 = b1;
     b3.pop_back();
     cout << b3.size() << endl;
+
+    echo_str(5);
 
     return 0;
 }

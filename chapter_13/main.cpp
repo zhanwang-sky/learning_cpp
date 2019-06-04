@@ -1,41 +1,49 @@
 #include <iostream>
-#include "hasptr_shared.h"
-#include "msg.h"
+#include "hasptr.h"
+#include "message.h"
 
 using namespace std;
 
-namespace e_13_34 {
+#define __FUNC_ENTER() \
+do { \
+    cout << ">>>" << __FUNCTION__ << "(" << __LINE__ << ") ENTER" << endl; \
+} while (false)
 
-void exercise() {
-    Folder my_document;
-    Message jon("hello world");
+#define __FUNC_EXIT() \
+do { \
+    cout << "<<<" << __FUNCTION__ << "(" << __LINE__ << ") EXIT" << endl; \
+} while (false)
 
-    jon.save(my_document);
+void hasptr_demo() {
+    cout << "HasPtr hp1" << endl;
+    HasPtr hp1;
 
-    cout << jon.contents() << endl;
+    cout << "HasPtr hp2(\"balabal\")" << endl;
+    HasPtr hp2("fuck!");
+
+    cout << "HasPtr hp3 = hp2" << endl;
+    HasPtr hp3 = hp2;
+
+    cout << "hp3 = hp1" << endl;
+    hp3 = hp1;
 }
 
+void message_demo() {
+    __FUNC_ENTER();
+    Message m1(__FUNCTION__);
+    Message m2(m1);
+    __FUNC_EXIT();
 }
 
 int main(void) {
-    HasPtr hp1("fuck!");
-    HasPtr hp3;
+    cout << "hello world\n";
+    cout << endl;
 
-    do {
-        HasPtr hp2 = hp1;
+    hasptr_demo();
+    cout << endl;
 
-        hp3 = hp2;
-        hp2 = hp2;
-
-        swap(hp2, hp3);
-
-        cout << *hp3.data() << endl;
-        cout << *hp2.data() << endl;
-    } while (0);
-
-    cout << *hp3.data() << endl;
-
-    e_13_34::exercise();
+    message_demo();
+    cout << endl;
 
     return 0;
 }
