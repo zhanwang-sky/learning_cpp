@@ -1,6 +1,7 @@
 #include <iostream>
 #include "hasptr.h"
 #include "message.h"
+#include "strvec.h"
 
 using namespace std;
 
