@@ -1,7 +1,9 @@
 #include <iostream>
+#include <utility>
 #include "hasptr.h"
 #include "message.h"
 #include "strvec.h"
+#include "string.h"
 
 using namespace std;
 
@@ -36,6 +38,30 @@ void message_demo() {
     __FUNC_EXIT();
 }
 
+void String_demo() {
+    __FUNC_ENTER();
+
+    String s1("hahahah");
+    cout << "s1 = " << s1.c_str() << endl;
+
+    do {
+        String s2 = "hello world";
+        cout << "s1 <=X s2\n";
+        s1 = std::move(s2);
+    } while (false);
+
+    cout << "s1 = " << s1.c_str() << endl;
+
+    String s3 = "ni hao";
+    cout << "s3 <= s3\n";
+    s3 = s3;
+    cout << "s3 <=X s3\n";
+    s3 = std::move(s3);
+    cout << "s3 = " << s3.c_str() << endl;
+
+    __FUNC_EXIT();
+}
+
 int main(void) {
     cout << "hello world\n";
     cout << endl;
@@ -44,6 +70,9 @@ int main(void) {
     cout << endl;
 
     message_demo();
+    cout << endl;
+
+    String_demo();
     cout << endl;
 
     return 0;
