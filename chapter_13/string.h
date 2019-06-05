@@ -5,6 +5,7 @@
 #include <utility>
 
 class String {
+    friend void swap(String&, String&);
 public:
     String();
     String(const char*);

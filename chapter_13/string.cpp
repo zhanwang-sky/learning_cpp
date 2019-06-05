@@ -9,6 +9,13 @@ using std::endl;
 #define _BLOCK_SZ (512)
 
 // Public methods
+void swap(String &lhs, String &rhs) {
+    using std::swap;
+    swap(lhs.head, rhs.head);
+    swap(lhs.curr, rhs.curr);
+    swap(lhs.tail, rhs.tail);
+}
+
 String::String() {
     cout << "String::default constructor" << endl;
 }
