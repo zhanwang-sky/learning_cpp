@@ -10,6 +10,7 @@ int main() {
 
     item1.debug(cout);
     item2.debug(cout);
+    cout << endl;
 
     print_total(cout, item1, 8);
     print_total(cout, item2, 3);
