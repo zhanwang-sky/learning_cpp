@@ -5,6 +5,17 @@
 
 namespace util {
 
+    template<class T, std::size_t N>
+    const T& caccess(const T (&arr)[N], std::size_t i) {
+        return arr[i];
+    }
+
+    // not applicable to bool
+    template<class C>
+    const typename C::value_type& access(const C &c, typename C::size_type i) {
+        return c[i];
+    }
+
     template<typename T>
     int compare(const T &v1, const T &v2) {
         if (v1 < v2) { return -1; }
@@ -58,6 +69,6 @@ namespace util {
     template<class T, std::size_t N>
     constexpr std::size_t size_of(const T (&arr)[N]) noexcept { return sizeof(arr); }
 
-}; // namespace util
+} // namespace util
 
 #endif // _UTIL_H

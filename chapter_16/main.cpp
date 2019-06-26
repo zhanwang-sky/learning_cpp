@@ -18,9 +18,13 @@ using util::size_of;
 
 vector<int> vi = { 1, 2, 3, 4, 5 };
 vector<string> vs = { "hello", "wonderful", "world" };
-char cstr[] = "I am the king of the world";
+vector<bool> vb = { true, false, false };
+char arrc[] = "I am the king of the world";
+bool arrb[3] = { true, true, false };
 
 int main(void) {
+    arrc[sizeof(arrc) - 1] = '#';
+
     cout << util::compare(1, 2) << endl;
     cout << util::compare('x', 'y') << endl;
     cout << util::compare(string("1"), string("12")) << endl;
@@ -41,29 +45,37 @@ int main(void) {
         cout << "\'nihao\' not found in vs\n";
     }
 
-    auto cstr_it = util::find(util::begin(cstr), util::end(cstr), 'k');
-    if (cstr_it != util::end(cstr)) {
-        cout << *cstr_it << endl;
+    auto arrc_it = util::find(util::begin(arrc), util::end(arrc), 'k');
+    if (arrc_it != util::end(arrc)) {
+        cout << *arrc_it << endl;
     } else {
-        cout << "\'k\' not found in cstr\n";
+        cout << "\'k\' not found in arrc\n";
     }
 
     cout << endl; //////////
 
-    cstr[sizeof(cstr) - 1] = '#';
-    print_array1(cstr);
-    print_array2(cstr);
-    print_array3(&cstr);
+    print_array1(arrc);
+    print_array2(arrc);
+    print_array3(&arrc);
 
     cout << endl; //////////
 
-    cout << "end(cstr) - begin(cstr) = " << util::end(cstr) - util::begin(cstr) << endl;
+    cout << "end(arrc) - begin(arrc) = " << util::end(arrc) - util::begin(arrc) << endl;
     vi.push_back(6);
     cout << "size of vi = " << get_size(vi) << endl;
-    cout << "size of cstr = " << size_of(cstr) << endl;
-    // error: cout << "size of cstr: " << get_size(cstr) << endl;
+    cout << "size of arrc = " << size_of(arrc) << endl;
+    // error: cout << "size of arrc: " << get_size(arrc) << endl;
 
     cout << endl; //////////
+
+    //const Blob<bool> bx = { true, true, false, true };
+    const Blob<string> bx = { "Jon", "Dany", "Targaryen", "Winterfell" };
+    cout << bx.at(3) << endl;
+
+    cout << util::access(bx, 0) << endl;
+    // error: cout << util::access(vb, 2) << endl;
+    cout << util::caccess(arrc, 3) << endl;
+    cout << util::caccess(arrb, 2) << endl;
 
     return 0;
 }

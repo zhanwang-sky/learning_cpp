@@ -1,3 +1,6 @@
+#ifndef _SALES_DATA_H
+#define _SALES_DATA_H
+
 class Sales_data {
 friend std::istream& read(std::istream&, Sales_data&);
 friend std::ostream& print(std::ostream&, Sales_data&);
@@ -20,3 +23,5 @@ private:
     double _revenue = 0.0;
     static std::string _version;
 };
+
+#endif // _SALES_DATA_H
